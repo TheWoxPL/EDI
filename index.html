@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>EDI Project</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -30,20 +30,13 @@
         </div>
         <div class="bg-secondary container-fluid p-4">
 
-            <table class="table table-hover bg-light container">
-                <thead>
             <table class="table table-hover bg-light container table-striped table-bordered">
                 <thead class = 'table-dark'>
                     <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">brand</th>
-                        <th scope="col">model</th>
-                        <th scope="col">serial_number</th>
-                        <th scope="col">price</th>
-                        <th scope="col">quantity</th>
-                        <th scope="col">availability</th>
-                        <th scope="col">made_in_country</th>
-                        <th scope="col">rate</th>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
                     </tr>
                 </thead>
                 <tbody id="table_tbody">
@@ -52,7 +45,7 @@
 
         </div>
     </div>
-
+    
 
 
 
@@ -62,7 +55,7 @@
         crossorigin="anonymous">
     </script>
     <script>
-
+      
         fetch('https://my.api.mockaroo.com/edi.json?key=7dfd4240')
         .then((response) => response.json())
         .then((data) => {
@@ -75,11 +68,11 @@
                     <td>${data[i]['brand']}</td>    
                     <td>${data[i]['model']}</td>    
                     <td>${data[i]['serial_number']}</td>    
-                    <td>${data[i]['price']}$</td>    
+                    <td>${data[i]['price']}</td>    
                     <td>${data[i]['quantity']}</td>    
-                    <td class="${data[i]['availability']?"text-success":"text-danger"} "><b>${data[i]['availability']?"yes":"no"}</b></td>    
+                    <td>${data[i]['availability']}</td>    
                     <td>${data[i]['made_in_country']}</td>    
-                    <td><b>${data[i]['rate']}</b></td>    
+                    <td>${data[i]['rate']}</td>    
                 </tr>
                 `
             }
