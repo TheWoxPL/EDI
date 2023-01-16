@@ -33,7 +33,7 @@
             </div>
             
         </div>
-        <div class="bg-secondary container-fluid p-4">
+        <div class="bg-secondary container-fluid p-4" id="div-table">
 
             <table class="table table-hover bg-light container">
                 <thead>
@@ -55,9 +55,9 @@
                 </tbody>
             </table>
 
+            
             <canvas id="myChart" class="container bg-light mb-3 "></canvas>
             <canvas id="myChart2" class="container bg-light col-sm-8"></canvas>
-            
         </div>
     </div>
 
@@ -127,6 +127,14 @@
                 if(data[i]['availability'])available_counter++
             }
 
+
+            let mychart=document.getElementById("myChart")          //pobranie elemntów canvas potrzebnych do wykresów
+            let mychart2=document.getElementById("myChart2")
+            mychart.remove()                                        //usuwanie canvasów z wykresami
+            mychart2.remove()
+            let div_table=document.getElementById("div-table")      //pobranie całego elementu z danymi i wykresami, aby dodać nowe czyste canvasy
+            div_table.innerHTML+='<canvas id="myChart" class="container bg-light mb-3 "></canvas>'      // dodanie do diva z danymi nowych czystych canvasów
+            div_table.innerHTML+='<canvas id="myChart2" class="container bg-light col-sm-8"></canvas>'
 
 
             let xValues = ["Poland","United Kingdom","Germany","Switzerland","Belgium","United States","Portugal"];     //tabela wartośći na osi x pierwszego wykresu
