@@ -27,7 +27,9 @@
                 <div>
                     <p class="text-primary fs-3">Robert Ciepliński</p>
                 </div>
-                <button type="button" id = "button" class="btn btn-outline-secondary btn-lg">Generate dataset</button>
+                <button type="button" id = "button1" class="btn btn-outline-secondary btn-lg">Generate dataset1</button>
+                <button type="button" id = "button2" class="btn btn-outline-secondary btn-lg">Generate dataset2</button>
+                <button type="button" id = "button3" class="btn btn-outline-secondary btn-lg">Generate dataset3</button>
             </div>
             
         </div>
@@ -65,9 +67,25 @@
     </script>
     <script>
 
-        fetch('https://my.api.mockaroo.com/edi.json?key=7dfd4240')      //wysłanie zapytania do api za pomocą fetcha
-        .then((response) => response.json())    // po uzyskaniu odpowiedzi dane są parsowane na format JSON      
-        .then((data) => {
+        const button1 = document.getElementById("button1");
+        const button2 = document.getElementById("button2");
+        const button3 = document.getElementById("button3");
+
+        button1.addEventListener('click' , function(e){
+            display("https://raw.githubusercontent.com/TheWoxPL/EDI/main/dataset1.json")
+        });
+        button2.addEventListener('click' , function(e){
+            display("https://raw.githubusercontent.com/TheWoxPL/EDI/main/dataset2.json")
+        });
+        button3.addEventListener('click' , function(e){
+            display("https://raw.githubusercontent.com/TheWoxPL/EDI/main/dataset3.json")
+        });
+
+        function display(url){
+
+            fetch(url)      //wysłanie zapytania do api za pomocą fetcha
+            .then((response) => response.json())    // po uzyskaniu odpowiedzi dane są parsowane na format JSON      
+            .then((data) => {
             const table_tbody=document.getElementById("table_tbody")    //pobranie elementu z tbody z tabeli, aby potem dodać do niej kolejne wiersze z danymi
 
             let poland_counter=0    //deklaracja zmiennych do liczenia wystąpień każdego z państw, potrzebne do tworzenia wykresu słupkowego
@@ -80,6 +98,7 @@
 
             let available_counter=0     //deklarcja zmiennych do liczenia ile typów produktów jest dostępnych
 
+            table_tbody.innerHTML=""    //czyszczenie tabeli, aby nie pojawiały sie dodatkowe wiersze przy zmianie danych, tlyko aby były one na nowo generowane w tabeli
             for(i=0;i<data.length;i++){     //pętla która wykonuje się od 0 do liczby elmentów tablicy json 
                 table_tbody.innerHTML+=`    
                 <tr>
@@ -96,12 +115,6 @@
                 `
                 // kod powyżej - tworzenie wiersza tabeli (tr) i w niej pojedyńczych komórek (td) oraz wpisanie do nich wartości z każdej wartości z api, z json
                 //dodatkowo w lini 90 jest skrócony if, który odczytuje wartość data[i]['availability'] i wypisuje odpowiedni string
-
-                const button = document.getElementById("button");
-
-                button.addEventListener('click' , function(e){
-                    console.log(Text);
-                });
 
                 if(data[i]['made_in_country']=="Poland")poland_counter++    //sprawdzanie czy dany kraj występuje w danym wierszu danych i jak tak to zwieksza licznik o 1
                 if(data[i]['made_in_country']=="United Kingdom")uk_counter++
@@ -168,6 +181,9 @@
 
             
         });
+        }
+
+        
 
     </script>
 </body>
