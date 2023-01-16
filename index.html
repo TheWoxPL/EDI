@@ -27,7 +27,7 @@
                 <div>
                     <p class="text-primary fs-3">Robert Ciepliński</p>
                 </div>
-                <button type="button" class="btn btn-outline-secondary btn-lg">Generate dataset</button>
+                <button type="button" id = "button" class="btn btn-outline-secondary btn-lg">Generate dataset</button>
             </div>
             
         </div>
@@ -96,6 +96,12 @@
                 `
                 // kod powyżej - tworzenie wiersza tabeli (tr) i w niej pojedyńczych komórek (td) oraz wpisanie do nich wartości z każdej wartości z api, z json
                 //dodatkowo w lini 90 jest skrócony if, który odczytuje wartość data[i]['availability'] i wypisuje odpowiedni string
+
+                const button = document.getElementById("button");
+
+                button.addEventListener('click' , function(e){
+                    console.log(Text);
+                });
 
                 if(data[i]['made_in_country']=="Poland")poland_counter++    //sprawdzanie czy dany kraj występuje w danym wierszu danych i jak tak to zwieksza licznik o 1
                 if(data[i]['made_in_country']=="United Kingdom")uk_counter++
